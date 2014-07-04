@@ -10,7 +10,7 @@ class Updater {
         $docdir     = $event->getComposer()->getConfig()->get("doc-dir");
 
         $io = $event->getIO();
-
+        $io->write("Swaggervel: building docs.");
         if (!file_exists($appdir)) {
             $io->write("Swaggervel: app-dir not found: ".$appdir);
         }
