@@ -1,0 +1,10 @@
+{
+    "apiVersion": null,
+    "swaggerVersion": "1.2",
+    "apis": [
+        {
+            "path": "/shipclients.{format}",
+            "description": "Operations about ship clients"
+        }
+    ]
+}
