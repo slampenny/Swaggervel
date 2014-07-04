@@ -1,6 +1,8 @@
 <?php namespace Jlapp\Swaggervel;
 
 use Illuminate\Support\ServiceProvider;
+use Jlapp\Swaggervel\SwaggervelInstallCommand;
+
 use Config;
 
 class SwaggervelServiceProvider extends ServiceProvider {
