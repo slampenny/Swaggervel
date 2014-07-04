@@ -20,7 +20,7 @@ class SwaggervelServiceProvider extends ServiceProvider {
 	{
 		$this->package('jlapp/swaggervel');
 
-        require __DIR__ .'routes.php';
+        require __DIR__ .'/routes.php';
 	}
 
 	/**
