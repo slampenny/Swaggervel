@@ -16,7 +16,6 @@
     },
     "require": {
         "php": ">=5.3.0",
-        "illuminate/support": "4.1.*",
         "zircote/swagger-php": "*"
     },
     "autoload": {
@@ -32,5 +31,5 @@
             "Jlapp\\Swaggervel\\Updater::postUpdate"
         ]
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "stable"
 }
