@@ -1,10 +1,5 @@
-SwaggervelServiceProvider.php<?php
-/**
- * Created by PhpStorm.
- * User: Jordan
- * Date: 04/07/14
- * Time: 4:24 PM
- */
+<?php
+namespace Jlapp\Swaggervel;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;

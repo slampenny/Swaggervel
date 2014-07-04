@@ -1,6 +1,7 @@
 <?php namespace Jlapp\Swaggervel;
 
 use Illuminate\Support\ServiceProvider;
+use Config;
 
 class SwaggervelServiceProvider extends ServiceProvider {
 
@@ -29,9 +30,9 @@ class SwaggervelServiceProvider extends ServiceProvider {
             'swaggervel::install'
         ));
 
-        if (\Config::get('app.debug')) {
-            $appdir = base_path().\Config::get('swaggervel::app.app-dir');
-            $docdir = base_path().\Config::get('swaggervel::app.doc-dir');
+        if (Config::get('app.debug')) {
+            $appdir = base_path().Config::get('swaggervel::app.app-dir');
+            $docdir = base_path().Config::get('swaggervel::app.doc-dir');
             exec("php ".base_path()."/vendor/zircote/swagger-php/swagger.phar ".$appdir." -o ".$docdir);
         }
 	}
