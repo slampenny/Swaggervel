@@ -10,10 +10,6 @@
             "email": "jordan@jordanlapp.com"
         }
     ],
-    "config": {
-        "app-dir": "../../../app",
-        "doc-dir": "../../../docs"
-    },
     "require": {
         "php": ">=5.3.0",
         "zircote/swagger-php": "*"
@@ -21,14 +17,6 @@
     "autoload": {
         "classmap": [
             "src/migrations"
-        ],
-        "psr-0": {
-            "Jlapp\\Swaggervel": "src/"
-        }
-    },
-    "scripts": {
-        "post-update-cmd": [
-            "Jlapp\\Swaggervel\\Updater::postUpdate"
         ]
     },
     "minimum-stability": "stable"
