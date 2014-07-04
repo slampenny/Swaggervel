@@ -22,9 +22,16 @@ class SwaggervelServiceProvider extends ServiceProvider {
 
         require __DIR__ .'/routes.php';
 
-        if (Config::get('app.debug')) {
-            $appdir = base_path().Config::get('swaggervel::app.app-dir');
-            $docdir = base_path().Config::get('swaggervel::app.doc-dir');
+        $this->app->bind('swaggervel::install', function($app) {
+            return new SwaggervelInstallCommand();
+        });
+        $this->commands(array(
+            'swaggervel::install'
+        ));
+
+        if (\Config::get('app.debug')) {
+            $appdir = base_path().\Config::get('swaggervel::app.app-dir');
+            $docdir = base_path().\Config::get('swaggervel::app.doc-dir');
             exec("php ".base_path()."/vendor/zircote/swagger-php/swagger.phar ".$appdir." -o ".$docdir);
         }
 	}
