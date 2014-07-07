@@ -26,7 +26,7 @@ class SwaggervelServiceProvider extends ServiceProvider {
         require __DIR__ .'/routes.php';
 
         $this->app->bind('swaggervel::install', function($app) {
-            return new SwaggervelInstallCommand();
+            return new Installer();
         });
         $this->commands(array(
             'swaggervel::install'
