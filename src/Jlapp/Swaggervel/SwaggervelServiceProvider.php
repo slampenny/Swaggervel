@@ -32,7 +32,7 @@ class SwaggervelServiceProvider extends ServiceProvider {
             'swaggervel::install'
         ));
 
-        Config::addNamespace('swaggervel', __DIR__."/../config");
+        Config::addNamespace('swaggervel', __DIR__."/../../config");
 
         Log::info("test");
 
