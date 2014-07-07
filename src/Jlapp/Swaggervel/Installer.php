@@ -1,4 +1,4 @@
-<?php
+<?php namespace Jlapp\Swaggervel;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
