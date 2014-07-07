@@ -15,5 +15,5 @@ Installation
 
 Example
 =======
-www.example.com/docs  <- swagger JSON files are visible
-www.example.com/api-docs <- swagger ui is visible.
+- www.example.com/docs  <- swagger JSON files are visible
+- www.example.com/api-docs <- swagger ui is visible.
