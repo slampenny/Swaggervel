@@ -32,6 +32,8 @@ class SwaggervelServiceProvider extends ServiceProvider {
             'swaggervel::install'
         ));
 
+        Config::addNamespace('swaggervel', __DIR__."/../config");
+
         if (Config::get('app.debug')) {
             $appdir = base_path().Config::get('swaggervel::app.app-dir');
             $docdir = base_path().Config::get('swaggervel::app.doc-dir');
