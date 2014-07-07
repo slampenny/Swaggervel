@@ -24,7 +24,7 @@
     <script type="text/javascript">
         $(function () {
             window.swaggerUi = new SwaggerUi({
-                url: "http://nls.app:8000/docs",
+                url: window.parent.location.href + "/..{{ Config::get('swaggervel::app.doc-dir'); }}",
                 dom_id: "swagger-ui-container",
                 supportedSubmitMethods: ['get', 'post', 'put', 'delete'],
                 onComplete: function(swaggerApi, swaggerUi){
