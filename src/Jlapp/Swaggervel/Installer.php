@@ -37,10 +37,15 @@ class Installer extends Command {
 	 */
 	public function fire()
 	{
-        $this->call(
-            'config:publish',
-            array('jlapp/swaggervel')
-        );
+        try {
+            $this->call(
+                'config:publish',
+                array('jlapp/swaggervel')
+            );
+        } catch (Exception $ex) {
+            $this->error("Error encountered: ".$ex->getMessage());
+        }
+        $this->info("Pushing swagger-ui asset to public folder");
         $this->call(
             'asset:publish',
             array('jlapp/swaggervel')

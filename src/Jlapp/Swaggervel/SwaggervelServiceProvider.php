@@ -21,9 +21,11 @@ class SwaggervelServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('jlapp/swaggervel');
+        $this->package('jlapp/swaggervel');
 
         require __DIR__ .'/routes.php';
+
+        //Config::addNamespace('swaggervel', __DIR__."/../../config");
 
         $this->app->bind('swaggervel::install', function($app) {
             return new Installer();
@@ -31,8 +33,6 @@ class SwaggervelServiceProvider extends ServiceProvider {
         $this->commands(array(
             'swaggervel::install'
         ));
-
-        Config::addNamespace('swaggervel', __DIR__."/../../config");
 
         if (Config::get('app.debug')) {
             $appdir = base_path().Config::get('swaggervel::app.app-dir');
