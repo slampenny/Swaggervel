@@ -37,7 +37,11 @@ class SwaggervelServiceProvider extends ServiceProvider {
         if (Config::get('app.debug')) {
             $appdir = base_path().Config::get('swaggervel::app.app-dir');
             $docdir = base_path().Config::get('swaggervel::app.doc-dir');
-            exec("php ".base_path()."/vendor/zircote/swagger-php/swagger.phar ".$appdir." -o ".$docdir);
+            $result = shell_exec("php ".base_path()."/vendor/zircote/swagger-php/swagger.phar ".$appdir." -o ".$docdir);
+
+            if ((strpos($result, "[INFO]") != FALSE) || (strpos($result, "[WARN]") != FALSE)) {
+                throw new \Exception($result);
+            }
         }
 	}
 
