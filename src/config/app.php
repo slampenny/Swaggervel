@@ -7,6 +7,7 @@
  */
 
 return array(
-    "app-dir" => "/app",
-    "doc-dir" => "/docs"
+    "app-dir" => "app",
+    "doc-dir" => "docs",
+    "api-key" => "auth_token",
 );

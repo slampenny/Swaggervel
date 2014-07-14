@@ -25,8 +25,6 @@ class SwaggervelServiceProvider extends ServiceProvider {
 
         require __DIR__ .'/routes.php';
 
-        //Config::addNamespace('swaggervel', __DIR__."/../../config");
-
         $this->app->bind('swaggervel::install', function($app) {
             return new Installer();
         });
@@ -35,10 +33,11 @@ class SwaggervelServiceProvider extends ServiceProvider {
         ));
 
         if (Config::get('app.debug')) {
-            $appdir = base_path().Config::get('swaggervel::app.app-dir');
-            $docdir = base_path().Config::get('swaggervel::app.doc-dir');
+            $appdir = base_path()."/".Config::get('swaggervel::app.app-dir');
+            $docdir = base_path()."/".Config::get('swaggervel::app.doc-dir');
             $result = shell_exec("php ".base_path()."/vendor/zircote/swagger-php/swagger.phar ".$appdir." -o ".$docdir);
 
+            //display all swagger-php error messages so that it doesn't fail silently
             if ((strpos($result, "[INFO]") != FALSE) || (strpos($result, "[WARN]") != FALSE)) {
                 throw new \Exception($result);
             }
