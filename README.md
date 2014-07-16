@@ -12,6 +12,7 @@ Installation
 
 - Add 'Jlapp\Swaggervel\SwaggervelServiceProvider' to your providers array in app/config/app.php
 - Run php artisan swaggervel:install to push swagger-ui to your public folder.
+- Run php artisan config:publish jlapp/swaggervel to push config files to your app folder.
 
 Example
 =======

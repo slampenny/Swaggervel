@@ -37,11 +37,12 @@ class Installer extends Command {
 	 */
 	public function fire()
 	{
-        $this->info("pushing config files to public");
+        //this code, if run, returns "configuration not found" and I can't determine why.
+        /*$this->info("pushing config files to public");
         $this->call(
             'config:publish',
             array('package', 'jlapp/swaggervel')
-        );
+        );*/
         $this->info("Pushing swagger-ui assets to public folder");
         $this->call(
             'asset:publish',
