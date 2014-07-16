@@ -40,7 +40,7 @@ class Installer extends Command {
         $this->info("pushing config files to public");
         $this->call(
             'config:publish',
-            array('--path' => '../../config', 'jlapp/swaggervel')
+            array('jlapp/swaggervel')
         );
         $this->info("Pushing swagger-ui assets to public folder");
         $this->call(
