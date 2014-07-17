@@ -1,25 +1,25 @@
 <html>
 <head>
     {{ HTML::style('https://fonts.googleapis.com/css?family=Droid+Sans:400,700'); }}
-    {{ HTML::style('packages/Jlapp/Swaggervel/css/reset.css', array('media' => 'screen')); }}
-    {{ HTML::style('packages/Jlapp/Swaggervel/css/reset.css', array('media' => 'print')); }}
-    {{ HTML::style('packages/Jlapp/Swaggervel/css/screen.css', array('media' => 'screen')); }}
-    {{ HTML::style('packages/Jlapp/Swaggervel/css/screen.css', array('media' => 'print')); }}
+    {{ HTML::style('packages/jlapp/swaggervel/css/reset.css', array('media' => 'screen')); }}
+    {{ HTML::style('packages/jlapp/swaggervel/css/reset.css', array('media' => 'print')); }}
+    {{ HTML::style('packages/jlapp/swaggervel/css/screen.css', array('media' => 'screen')); }}
+    {{ HTML::style('packages/jlapp/swaggervel/css/screen.css', array('media' => 'print')); }}
 
-    {{ HTML::script('packages/Jlapp/Swaggervel/lib/shred.bundle.js'); }}
-    {{ HTML::script('packages/Jlapp/Swaggervel/lib/jquery-1.8.0.min.js'); }}
-    {{ HTML::script('packages/Jlapp/Swaggervel/lib/jquery.slideto.min.js'); }}
-    {{ HTML::script('packages/Jlapp/Swaggervel/lib/jquery.wiggle.min.js'); }}
-    {{ HTML::script('packages/Jlapp/Swaggervel/lib/jquery.ba-bbq.min.js'); }}
-    {{ HTML::script('packages/Jlapp/Swaggervel/lib/handlebars-1.0.0.js'); }}
-    {{ HTML::script('packages/Jlapp/Swaggervel/lib/underscore-min.js'); }}
-    {{ HTML::script('packages/Jlapp/Swaggervel/lib/backbone-min.js'); }}
-    {{ HTML::script('packages/Jlapp/Swaggervel/lib/swagger.js'); }}
-    {{ HTML::script('packages/Jlapp/Swaggervel/swagger-ui.js'); }}
-    {{ HTML::script('packages/Jlapp/Swaggervel/lib/highlight.7.3.pack.js'); }}
+    {{ HTML::script('packages/jlapp/swaggervel/lib/shred.bundle.js'); }}
+    {{ HTML::script('packages/jlapp/swaggervel/lib/jquery-1.8.0.min.js'); }}
+    {{ HTML::script('packages/jlapp/swaggervel/lib/jquery.slideto.min.js'); }}
+    {{ HTML::script('packages/jlapp/swaggervel/lib/jquery.wiggle.min.js'); }}
+    {{ HTML::script('packages/jlapp/swaggervel/lib/jquery.ba-bbq.min.js'); }}
+    {{ HTML::script('packages/jlapp/swaggervel/lib/handlebars-1.0.0.js'); }}
+    {{ HTML::script('packages/jlapp/swaggervel/lib/underscore-min.js'); }}
+    {{ HTML::script('packages/jlapp/swaggervel/lib/backbone-min.js'); }}
+    {{ HTML::script('packages/jlapp/swaggervel/lib/swagger.js'); }}
+    {{ HTML::script('packages/jlapp/swaggervel/swagger-ui.js'); }}
+    {{ HTML::script('packages/jlapp/swaggervel/lib/highlight.7.3.pack.js'); }}
 
     <!-- enabling this will enable oauth2 implicit scope support -->
-    {{ HTML::script('packages/Jlapp/Swaggervel/lib/swagger-oauth.js'); }}
+    {{ HTML::script('packages/jlapp/swaggervel/lib/swagger-oauth.js'); }}
 
     <script type="text/javascript">
         $(function () {
@@ -67,10 +67,10 @@
         <a id="logo" href="http://swagger.wordnik.com">swagger</a>
         <form id='api_selector'>
             <div class='input icon-btn'>
-                {{ HTML::image('packages/Jlapp/Swaggervel/images/pet_store_api.png', "", array('id' => 'show-pet-store-icon', 'title' => 'Show Swagger Petstore Example Apis')); }}
+                {{ HTML::image('packages/jlapp/swaggervel/images/pet_store_api.png', "", array('id' => 'show-pet-store-icon', 'title' => 'Show Swagger Petstore Example Apis')); }}
             </div>
             <div class='input icon-btn'>
-                {{ HTML::image('packages/Jlapp/Swaggervel/images/wordnik_api.png', "", array('id' => 'show-wordnik-dev-icon', 'title' => 'Show Wordnik Developer Apis')); }}
+                {{ HTML::image('packages/jlapp/swaggervel/images/wordnik_api.png', "", array('id' => 'show-wordnik-dev-icon', 'title' => 'Show Wordnik Developer Apis')); }}
             </div>
             <div class='input'><input placeholder="http://example.com/api" id="input_baseUrl" name="baseUrl" type="text"/></div>
             <div class='input'><input placeholder="api_key" id="input_apiKey" name="apiKey" type="text"/></div>
