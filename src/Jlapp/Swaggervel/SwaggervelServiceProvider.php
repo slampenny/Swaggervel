@@ -40,11 +40,13 @@ class SwaggervelServiceProvider extends ServiceProvider {
                 \File::makeDirectory($docdir);
             }
 
-            $result = shell_exec("php ".base_path()."/vendor/zircote/swagger-php/swagger.phar ".$appdir." -o ".$docdir);
+            if (is_writable($docdir)) {
+                $result = shell_exec("php ".base_path()."/vendor/zircote/swagger-php/swagger.phar ".$appdir." -o ".$docdir);
 
-            //display all swagger-php error messages so that it doesn't fail silently
-            if ((strpos($result, "[INFO]") != FALSE) || (strpos($result, "[WARN]") != FALSE)) {
-                throw new \Exception($result);
+                //display all swagger-php error messages so that it doesn't fail silently
+                if ((strpos($result, "[INFO]") != FALSE) || (strpos($result, "[WARN]") != FALSE)) {
+                    throw new \Exception($result);
+                }
             }
         }
 	}
