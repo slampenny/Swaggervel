@@ -18,3 +18,7 @@ Example
 =======
 - www.example.com/docs  <- swagger JSON files are visible
 - www.example.com/api-docs <- swagger ui is visible.
+
+How to Use Swagger-php
+======================
+The actual Swagger spec is beyond the scope of this package. All Swaggervel does is package up swagger-php and swagger-ui in a Laravel-friendly fashion, and tries to make it easy to serve. For info on how to use swagger-php <a href="http://zircote.com/swagger-php/">look here</a>. For good examples of swagger-php in action <a href="https://github.com/zircote/swagger-php/tree/master/Examples/Petstore">look here</a>.
