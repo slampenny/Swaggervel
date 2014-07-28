@@ -38,7 +38,7 @@ class Installer extends Command {
 	public function fire()
 	{
         $this->info("pushing config files to public");
-        exec("php artisan config::publish jlapp/swaggervel");
+        exec("php artisan config:publish --force jlapp/swaggervel");
 
         //this code, if run, returns "configuration not found" and I can't determine why.
         /*$this->call(
@@ -46,7 +46,7 @@ class Installer extends Command {
             array('package', 'jlapp/swaggervel')
         );*/
         $this->info("Pushing swagger-ui assets to public folder");
-        exec("php artisan asset::publish jlapp/swaggervel");
+        exec("php artisan asset:publish jlapp/swaggervel");
 
         //this code publishes the assets from every package you have installed. Not sure what I'm doing wrong.
         /*$this->call(
