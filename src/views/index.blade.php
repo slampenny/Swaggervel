@@ -24,7 +24,8 @@
     <script type="text/javascript">
         $(function () {
             window.swaggerUi = new SwaggerUi({
-                url: window.parent.location.href + "/../{{ Config::get('swaggervel::app.doc-dir'); }}",
+                url: location.protocol + '//' + window.parent.location.host + window.parent.location.pathname + "/../{{ Config::get('swaggervel::app.doc-dir'); }}" ,
+                //url: window.parent.location.href + "/../{{ Config::get('swaggervel::app.doc-dir'); }}",
                 dom_id: "swagger-ui-container",
                 supportedSubmitMethods: ['get', 'post', 'put', 'delete'],
                 onComplete: function(swaggerApi, swaggerUi){

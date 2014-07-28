@@ -35,6 +35,11 @@ class SwaggervelServiceProvider extends ServiceProvider {
         if (Config::get('app.debug')) {
             $appdir = base_path()."/".Config::get('swaggervel::app.app-dir');
             $docdir = base_path()."/".Config::get('swaggervel::app.doc-dir');
+
+            if (!\File::exists($docdir)) {
+                \File::makeDirectory($docdir);
+            }
+
             $result = shell_exec("php ".base_path()."/vendor/zircote/swagger-php/swagger.phar ".$appdir." -o ".$docdir);
 
             //display all swagger-php error messages so that it doesn't fail silently
