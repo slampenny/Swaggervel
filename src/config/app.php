@@ -10,5 +10,5 @@ return array(
     "app-dir" => "app",
     "doc-dir" => "docs",
     "api-key" => "auth_token",
-    "default-base-path" => "http://nls.app:8000",
+    "default-base-path" => "",
 );
