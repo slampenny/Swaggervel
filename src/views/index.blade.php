@@ -1,3 +1,4 @@
+<?php header('Access-Control-Allow-Origin: *'); ?>
 <html>
 <head>
     {{ HTML::style('https://fonts.googleapis.com/css?family=Droid+Sans:400,700'); }}

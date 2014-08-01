@@ -4,10 +4,17 @@ Route::get(Config::get('swaggervel::app.doc-dir').'/{page?}', function($page='in
     header('Access-Control-Allow-Origin: *');
     $parts = pathinfo($page);
     $path = $_SERVER["DOCUMENT_ROOT"];
-    if (substr($path, -1) !== "/") {
-        $path .= "/";
+
+
+    if (substr($path, -1) === "/") {
+        $path = trim($path, "/");
     }
-    $path .= "../".Config::get('swaggervel::app.doc-dir')."/$page";
+
+    $path = preg_replace('/public$/', '/', $path);
+
+    $path .="/";
+
+    $path .= Config::get('swaggervel::app.doc-dir')."/$page";
     if ($parts['extension'] === 'php') {
         require($path);
     } else {
@@ -20,11 +27,15 @@ Route::get('api-docs', function() {
         $appdir = base_path()."/".Config::get('swaggervel::app.app-dir');
         $docdir = base_path()."/".Config::get('swaggervel::app.doc-dir');
 
-        if (!\File::exists($docdir)) {
-            \File::makeDirectory($docdir);
-        }
 
-        if (is_writable($docdir)) {
+        if (!File::exists($docdir) || is_writable($docdir)) {
+            //delete all existing documentation
+            if (File::exists($docdir)) {
+                File::deleteDirectory($docdir);
+            }
+
+            File::makeDirectory($docdir);
+
             $basepath = "";
             $defaultBasePath = Config::get('swaggervel::app.default-base-path');
             if ((isset($defaultBasePath)) && ($defaultBasePath !== '')) {
