@@ -49,5 +49,9 @@ Route::get('api-docs', function() {
             }
         }
     }
+    
+    Blade::setEscapedContentTags('{{{', '}}}');
+    Blade::setContentTags('{{', '}}');
+
     return View::make('swaggervel::index');
 });
