@@ -49,7 +49,9 @@ Route::get('api-docs', function() {
             }
         }
     }
-
+    
+    Blade::setEscapedContentTags('{{{', '}}}');
+    Blade::setContentTags('{{', '}}');
 
     $response = Response::make(View::make('swaggervel::index'), 200);
     if (Config::has('swaggervel::app.viewHeaders')) {
