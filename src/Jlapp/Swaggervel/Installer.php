@@ -38,7 +38,7 @@ class Installer extends Command {
 	public function fire()
 	{
         $this->info("pushing config files to public");
-        exec("php artisan config:publish --force jlapp/swaggervel");
+        exec("php artisan config:publish jlapp/swaggervel");
 
         //this code, if run, returns "configuration not found" and I can't determine why.
         /*$this->call(

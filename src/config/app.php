@@ -11,4 +11,8 @@ return array(
     "doc-dir" => "docs",
     "api-key" => "auth_token",
     "default-base-path" => "",
+
+    /*"viewHeaders" => array(
+        'Content-Type' => 'text/plain'
+    ),*/
 );

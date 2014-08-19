@@ -3,7 +3,7 @@
 Route::get(Config::get('swaggervel::app.doc-dir').'/{page?}', function($page='index.php') {
     header('Access-Control-Allow-Origin: *');
     $parts = pathinfo($page);
-    $path = $_SERVER["DOCUMENT_ROOT"];
+    $path =  base_path();
 
 
     if (substr($path, -1) === "/") {
@@ -49,5 +49,14 @@ Route::get('api-docs', function() {
             }
         }
     }
-    return View::make('swaggervel::index');
+
+
+    $response = Response::make(View::make('swaggervel::index'), 200);
+    if (Config::has('swaggervel::app.viewHeaders')) {
+        foreach (Config::get('swaggervel::app.viewHeaders') as $key => $value) {
+            $response->header($key, $value);
+        }
+    }
+
+    return $response;
 });
