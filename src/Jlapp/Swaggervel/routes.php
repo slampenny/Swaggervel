@@ -41,6 +41,8 @@ Route::get('api-docs', function() {
             if ((isset($defaultBasePath)) && ($defaultBasePath !== '')) {
                 $basepath .= ' --default-base-path "'.$defaultBasePath.'"';
             }
+
+
             $result = shell_exec("php ".base_path()."/vendor/zircote/swagger-php/swagger.phar ".$appdir." -o ".$docdir.$basepath);
 
             //display all swagger-php error messages so that it doesn't fail silently
@@ -49,7 +51,7 @@ Route::get('api-docs', function() {
             }
         }
     }
-    
+
     Blade::setEscapedContentTags('{{{', '}}}');
     Blade::setContentTags('{{', '}}');
 

@@ -24,14 +24,9 @@
 
     <script type="text/javascript">
         $(function () {
-            var path =location.protocol + '//' + window.parent.location.host + window.parent.location.pathname;
-            if (path.slice(-1) !== "/") {
-                path += "/";
-                window.location.assign(path + window.parent.location.hash);
-            }
+            var path =location.protocol + '//' + window.parent.location.host ;
             window.swaggerUi = new SwaggerUi({
-                url: path + "../{{ Config::get('swaggervel::app.doc-dir'); }}" ,
-                //url: window.parent.location.href + "/../{{ Config::get('swaggervel::app.doc-dir'); }}",
+                url: path + "/../{{ Config::get('swaggervel::app.doc-dir'); }}" ,
                 dom_id: "swagger-ui-container",
                 supportedSubmitMethods: ['get', 'post', 'put', 'delete'],
                 onComplete: function(swaggerApi, swaggerUi){
