@@ -7,7 +7,10 @@
  */
 
 return array(
-    "app-dir" => "app",
+    "target-dirs" => array(
+        "app/controllers",
+        "app/models",
+    ),
     "doc-dir" => "docs",
     "api-key" => "auth_token",
     "default-base-path" => "",
