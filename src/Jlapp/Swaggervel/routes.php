@@ -24,7 +24,6 @@ Route::get(Config::get('swaggervel::app.doc-dir').'/{page?}', function($page='in
 
 Route::get('api-docs', function() {
     if (Config::get('app.debug')) {
-        $appdir = base_path()."/".Config::get('swaggervel::app.app-dir');
         $docdir = base_path()."/".Config::get('swaggervel::app.doc-dir');
 
 
@@ -42,8 +41,17 @@ Route::get('api-docs', function() {
                 $basepath .= ' --default-base-path "'.$defaultBasePath.'"';
             }
 
+            foreach (Config::get('swaggervel::app.target-dirs') as $targetDir) {
 
-            $result = shell_exec("php ".base_path()."/vendor/zircote/swagger-php/swagger.phar ".$appdir." -o ".$docdir.$basepath);
+                $appdir = base_path()."/".$targetDir;
+
+                $result = shell_exec("php " . base_path() . "/vendor/zircote/swagger-php/swagger.phar " . $appdir . " -o " . $docdir . $basepath);
+
+                //display all swagger-php error messages so that it doesn't fail silently
+                if ((strpos($result, "[INFO]") != FALSE) || (strpos($result, "[WARN]") != FALSE)) {
+                    throw new \Exception($result);
+                }
+            }
 
             //display all swagger-php error messages so that it doesn't fail silently
             if ((strpos($result, "[INFO]") != FALSE) || (strpos($result, "[WARN]") != FALSE)) {
