@@ -31,6 +31,13 @@ return array(
         app_path() . '/models',
     ),
 
+    /*
+      |--------------------------------------------------------------------------
+      | Turn this off to remove swagger generation on production
+      |--------------------------------------------------------------------------
+    */
+    "generateAlways" => true,
+
     "api-key" => "auth_token",
     "default-base-path" => "",
 

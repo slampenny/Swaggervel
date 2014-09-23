@@ -14,7 +14,7 @@ Route::any(Config::get('swaggervel::app.doc-route').'/{page?}', function($page='
 });
 
 Route::get('api-docs', function() {
-    if (Config::get('app.debug')) {
+    if (Config::get('swaggervel::app.generateAlways')) {
         $docDir = Config::get('swaggervel::app.doc-dir');
 
         if (!File::exists($docDir) || is_writable($docDir)) {
