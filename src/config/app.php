@@ -28,7 +28,7 @@ return array(
     */
     "target-dirs" => array(
         app_path() . '/controllers',
-        app_path() . 'app/models',
+        app_path() . '/models',
     ),
 
     "api-key" => "auth_token",
