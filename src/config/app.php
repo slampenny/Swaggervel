@@ -7,11 +7,30 @@
  */
 
 return array(
+    /*
+      |--------------------------------------------------------------------------
+      | Absolute path to location where parsed swagger annotations will be stored
+      |--------------------------------------------------------------------------
+    */
+    'doc-dir' => app_path() . '/storage/docs',
+
+    /*
+      |--------------------------------------------------------------------------
+      | Relative path to access parsed swagger annotations.
+      |--------------------------------------------------------------------------
+    */
+    'doc-route' => '/docs',
+
+    /*
+      |--------------------------------------------------------------------------
+      | Absolute path to directory containing the swagger annotations are stored.
+      |--------------------------------------------------------------------------
+    */
     "target-dirs" => array(
-        "app/controllers",
-        "app/models",
+        app_path() . '/controllers',
+        app_path() . 'app/models',
     ),
-    "doc-dir" => "docs",
+
     "api-key" => "auth_token",
     "default-base-path" => "",
 

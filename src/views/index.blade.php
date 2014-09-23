@@ -20,13 +20,13 @@
     {{ HTML::script('packages/jlapp/swaggervel/lib/highlight.7.3.pack.js'); }}
 
     <!-- enabling this will enable oauth2 implicit scope support -->
-    {{ HTML::script('packages/jlapp/swaggervel/lib/swagger-oauth.js'); }}
+{{--    {{ HTML::script('packages/jlapp/swaggervel/lib/swagger-oauth.js'); }}--}}
 
     <script type="text/javascript">
         $(function () {
             var path =location.protocol + '//' + window.parent.location.host ;
             window.swaggerUi = new SwaggerUi({
-                url: path + "/../{{ Config::get('swaggervel::app.doc-dir'); }}" ,
+                url: "{{{ $urlToDocs }}}" ,
                 dom_id: "swagger-ui-container",
                 supportedSubmitMethods: ['get', 'post', 'put', 'delete'],
                 onComplete: function(swaggerApi, swaggerUi){

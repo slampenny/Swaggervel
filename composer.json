@@ -2,7 +2,7 @@
     "name": "jlapp/swaggervel",
     "description": "A great way to integrate Swagger into Laravel",
     "keywords": ["laravel", "swagger"],
-    "version": "0.0.2",
+    "version": "0.0.4",
     "license": "MIT",
     "authors": [
         {
@@ -15,9 +15,6 @@
         "zircote/swagger-php": "*"
     },
     "autoload": {
-        "classmap": [
-            "src/migrations"
-        ],
         "psr-0": {
             "Jlapp\\Swaggervel": "src/"
         }
