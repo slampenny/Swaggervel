@@ -8,9 +8,9 @@ Route::any(Config::get('swaggervel::app.doc-route').'/{page?}', function($page='
     }
 
     $content = File::get($filePath);
-    return Response::make($content, 200, [
+    return Response::make($content, 200, array(
         'Content-Type' => 'application/json'
-    ]);
+    ));
 });
 
 Route::get('api-docs', function() {
@@ -47,7 +47,7 @@ Route::get('api-docs', function() {
     Blade::setContentTags('{{', '}}');
 
     $response = Response::make(
-        View::make('swaggervel::index', ['urlToDocs' => url(Config::get('swaggervel::app.doc-route')) ]),
+        View::make('swaggervel::index', array('urlToDocs' => url(Config::get('swaggervel::app.doc-route')) )),
         200
     );
 
