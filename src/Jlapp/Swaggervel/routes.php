@@ -15,6 +15,7 @@ Route::any(Config::get('swaggervel::app.doc-route').'/{page?}', function($page='
 
 Route::get('api-docs', function() {
     if (Config::get('swaggervel::app.generateAlways')) {
+        $appDir = base_path()."/".Config::get('swaggervel::app.app-dir');
         $docDir = Config::get('swaggervel::app.doc-dir');
 
         if (!File::exists($docDir) || is_writable($docDir)) {
@@ -31,14 +32,25 @@ Route::get('api-docs', function() {
                 $basepath .= ' --default-base-path "'.$defaultBasePath.'"';
             }
 
-            foreach (Config::get('swaggervel::app.target-dirs') as $targetDir) {
-
-                $result = shell_exec("php " . base_path() . "/vendor/zircote/swagger-php/swagger.phar $targetDir -o {$docDir}{$basepath}");
-
-                //display all swagger-php error messages so that it doesn't fail silently
-                if ((strpos($result, "[INFO]") != FALSE) || (strpos($result, "[WARN]") != FALSE)) {
-                    throw new \Exception($result);
+            $excludes = "";
+            $found = false;
+            foreach(Config::get('swaggervel::app.excludes') as $exclude) {
+                if (!$found) {
+                    $excludes .= "-e ";
+                    $found = true;
                 }
+                $excludes .= $exclude.":";
+            }
+
+            if ($found) {
+                $excludes = rtrim($excludes, ":");
+            }
+
+            $result = shell_exec("php " . base_path() . "/vendor/zircote/swagger-php/swagger.phar $appDir -o {$docDir} {$basepath} {$excludes}");
+
+            //display all swagger-php error messages so that it doesn't fail silently
+            if ((strpos($result, "[INFO]") != FALSE) || (strpos($result, "[WARN]") != FALSE)) {
+                throw new \Exception($result);
             }
         }
     }

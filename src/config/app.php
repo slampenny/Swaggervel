@@ -26,9 +26,17 @@ return array(
       | Absolute path to directory containing the swagger annotations are stored.
       |--------------------------------------------------------------------------
     */
-    "target-dirs" => array(
-        app_path() . '/controllers',
-        app_path() . '/models',
+    "app-dir" => "app",
+
+    /*
+      |--------------------------------------------------------------------------
+      | Absolute path to directory containing the swagger annotations are stored.
+      |--------------------------------------------------------------------------
+    */
+    "excludes" => array(
+        app_path()."/storage",
+        app_path()."/tests",
+        app_path()."/views",
     ),
 
     /*
