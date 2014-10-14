@@ -30,7 +30,7 @@ return array(
 
     /*
       |--------------------------------------------------------------------------
-      | Absolute path to directory containing the swagger annotations are stored.
+      | Absolute path to directories that you would like to exclude from swagger generation
       |--------------------------------------------------------------------------
     */
     "excludes" => array(
@@ -49,11 +49,21 @@ return array(
     "api-key" => "auth_token",
     "default-base-path" => "",
 
+    /*
+      |--------------------------------------------------------------------------
+      | Uncomment to add response headers when swagger is generated
+      |--------------------------------------------------------------------------
+    */
     /*"viewHeaders" => array(
         'Content-Type' => 'text/plain'
     ),*/
 
-    "requestHeaders" => array(
+    /*
+      |--------------------------------------------------------------------------
+      | Uncomment to add request headers when swagger performs requests
+      |--------------------------------------------------------------------------
+    */
+    /*"requestHeaders" => array(
         'TestMe' => 'testValue'
-    ),
+    ),*/
 );
