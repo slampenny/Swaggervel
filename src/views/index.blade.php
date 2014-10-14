@@ -31,7 +31,11 @@
                 supportedSubmitMethods: ['get', 'post', 'put', 'delete'],
                 onComplete: function(swaggerApi, swaggerUi){
                     log("Loaded SwaggerUI");
-
+                    @if(isset($requestHeaders))
+                        @foreach($requestHeaders as $requestKey => $requestValue)
+                            window.authorizations.add("{{$requestKey}}", new ApiKeyAuthorization("{{$requestKey}}", "{{$requestValue}}", "header"));
+                        @endforeach
+                    @endif
                     if(typeof initOAuth == "function") {
                         /*
                          initOAuth({

@@ -59,7 +59,7 @@ Route::get('api-docs', function() {
     Blade::setContentTags('{{', '}}');
 
     $response = Response::make(
-        View::make('swaggervel::index', array('urlToDocs' => url(Config::get('swaggervel::app.doc-route')) )),
+        View::make('swaggervel::index', array('urlToDocs' => url(Config::get('swaggervel::app.doc-route')), 'requestHeaders' => Config::get('swaggervel::app.requestHeaders') )),
         200
     );
 

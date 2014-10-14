@@ -52,4 +52,8 @@ return array(
     /*"viewHeaders" => array(
         'Content-Type' => 'text/plain'
     ),*/
+
+    "requestHeaders" => array(
+        'TestMe' => 'testValue'
+    ),
 );
