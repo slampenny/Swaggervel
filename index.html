@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Swaggervel : Swagger for Laravel">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Swaggervel</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/slampenny/Swaggervel">View on GitHub</a>
+
+          <h1 id="project_title">Swaggervel</h1>
+          <h2 id="project_tagline">Swagger for Laravel</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/slampenny/Swaggervel/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/slampenny/Swaggervel/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="swaggervel" class="anchor" href="#swaggervel"><span class="octicon octicon-link"></span></a>Swaggervel</h1>
+
+<p>Swagger for Laravel</p>
+
+<p>This package combines <a href="https://github.com/zircote/swagger-php">Swagger-php</a> and <a href="https://github.com/wordnik/swagger-ui">swagger-ui</a> into one Laravel-friendly package.</p>
+
+<p>When you run your app in debug mode, Swaggervel will scan your app folder (or any folder that is set under the "app-dir" variable in the packages config), generate swagger json files and deposit them to the doc-dir folder (default is "/docs"). Files are then served by swagger-ui under the api-docs director.</p>
+
+<h1>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h1>
+
+<ul>
+<li>Add 'Jlapp\Swaggervel\SwaggervelServiceProvider' to your providers array in app/config/app.php</li>
+<li>Run php artisan swaggervel:install to push swagger-ui to your public folder.</li>
+<li>Run php artisan config:publish jlapp/swaggervel to push config files to your app folder.</li>
+</ul>
+
+<h1>
+<a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h1>
+
+<ul>
+<li>
+<a href="http://www.example.com/docs">www.example.com/docs</a>  &lt;- swagger JSON files are visible</li>
+<li>
+<a href="http://www.example.com/api-docs">www.example.com/api-docs</a> &lt;- swagger ui is visible.</li>
+</ul>
+
+<h1>
+<a name="options" class="anchor" href="#options"><span class="octicon octicon-link"></span></a>Options</h1>
+
+<p>Uncomment the "viewHeaders" option in the Config file to add headers to your view.</p>
+
+<h1>
+<a name="how-to-use-swagger-php" class="anchor" href="#how-to-use-swagger-php"><span class="octicon octicon-link"></span></a>How to Use Swagger-php</h1>
+
+<p>The actual Swagger spec is beyond the scope of this package. All Swaggervel does is package up swagger-php and swagger-ui in a Laravel-friendly fashion, and tries to make it easy to serve. For info on how to use swagger-php <a href="http://zircote.com/swagger-php/">look here</a>. For good examples of swagger-php in action <a href="https://github.com/zircote/swagger-php/tree/master/Examples/Petstore">look here</a>.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Swaggervel maintained by <a href="https://github.com/slampenny">slampenny</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
