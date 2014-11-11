@@ -1,6 +1,6 @@
 <?php
 /**
- * Overrides for the production config fie
+ * Overrides for the production config file
  */
 
 return array();
