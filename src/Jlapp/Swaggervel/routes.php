@@ -56,7 +56,7 @@ Route::get('api-docs', function() {
             $result = shell_exec($cmd);
 
             //display all swagger-php error messages so that it doesn't fail silently
-            if ((strpos($result, "[INFO]") != FALSE) || (strpos($result, "[WARN]") != FALSE)) {
+            if ((strpos($result, "[INFO]") != FALSE) || (strpos($result, "[WARN]") != FALSE) || (strpos($result, "[ERROR]") != FALSE)) {
                 throw new \Exception($result);
             }
         }
