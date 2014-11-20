@@ -62,6 +62,11 @@ Route::get('api-docs', function() {
         }
     }
 
+    if (Config::get('swaggervel::app.behind-reverse-proxy')) {
+        $proxy = Request::server('REMOTE_ADDR');
+        Request::setTrustedProxies(array($proxy));
+    }
+
     Blade::setEscapedContentTags('{{{', '}}}');
     Blade::setContentTags('{{', '}}');
 

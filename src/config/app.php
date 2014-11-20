@@ -68,6 +68,13 @@ return array(
       |--------------------------------------------------------------------------
     */
     "default-base-path" => "",
+
+    /*
+      |--------------------------------------------------------------------------
+      | Edit to trust the proxy's ip address - needed for AWS Load Balancer
+      |--------------------------------------------------------------------------
+    */
+    "behind-reverse-proxy" => false,
     /*
       |--------------------------------------------------------------------------
       | Uncomment to add response headers when swagger is generated
