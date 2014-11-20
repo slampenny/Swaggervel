@@ -62,11 +62,20 @@ Route::get('api-docs', function() {
         }
     }
 
+    if (Config::get('swaggervel::app.behind-reverse-proxy')) {
+        $proxy = Request::server('REMOTE_ADDR');
+        Request::setTrustedProxies(array($proxy));
+    }
+
     Blade::setEscapedContentTags('{{{', '}}}');
     Blade::setContentTags('{{', '}}');
 
     $response = Response::make(
-        View::make('swaggervel::index', array('urlToDocs' => url(Config::get('swaggervel::app.doc-route')), 'requestHeaders' => Config::get('swaggervel::app.requestHeaders') )),
+        View::make('swaggervel::index', array(
+            'secure'         => Request::secure(),
+            'urlToDocs'      => url(Config::get('swaggervel::app.doc-route')),
+            'requestHeaders' => Config::get('swaggervel::app.requestHeaders') )
+        ),
         200
     );
 
