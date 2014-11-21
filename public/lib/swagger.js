@@ -863,12 +863,14 @@ SwaggerOperation.prototype["do"] = function(args, opts, callback, error) {
   var possibleParams = [];
   for(var i = 0; i < this.parameters.length; i++) {
     var param = this.parameters[i];
-    if(param.paramType === 'header') {
-      if(args[param.name])
-        params.headers[param.name] = args[param.name];
+    if (typeof param.paramType != 'undefined') {
+      if(param.paramType === 'header') {
+        if(args[param.name])
+          params.headers[param.name] = args[param.name];
+      }
+      else if(param.paramType === 'form' || param.paramType.toLowerCase() === 'file')
+        possibleParams.push(param);
     }
-    else if(param.paramType === 'form' || param.paramType.toLowerCase() === 'file')
-      possibleParams.push(param);
   }
 
   if (args.body != null) {
