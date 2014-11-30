@@ -60,7 +60,7 @@
                 log("key: " + key);
                 if(key && key.trim() != "") {
                     log("added key " + key);
-                    window.authorizations.add("key", new ApiKeyAuthorization("{{Config::get('swaggervel::app.api-key')}}", key, "query"));
+                    window.authorizations.add("key", new ApiKeyAuthorization("{{$apiKey}}", key, "query"));
                 }
             })
             window.swaggerUi.load();
