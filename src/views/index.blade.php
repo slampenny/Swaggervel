@@ -24,7 +24,6 @@
 
     <script type="text/javascript">
         $(function () {
-            var path =location.protocol + '//' + window.parent.location.host ;
             window.swaggerUi = new SwaggerUi({
                 url: "{{{ $urlToDocs }}}" ,
                 dom_id: "swagger-ui-container",
