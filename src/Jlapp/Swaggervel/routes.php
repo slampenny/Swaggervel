@@ -59,7 +59,8 @@ Route::get('api-docs', function() {
     Blade::setContentTags('{{', '}}');
 
     $response = Response::make(
-        View::make('swaggervel::index', array('urlToDocs' => url(Config::get('swaggervel::app.doc-route')), 'requestHeaders' => Config::get('swaggervel::app.requestHeaders') )),
+        //need to add the slash at the end to avoid CORS error on Homestead boxes
+        View::make('swaggervel::index', array('urlToDocs' => url(Config::get('swaggervel::app.doc-route')) + "/", 'requestHeaders' => Config::get('swaggervel::app.requestHeaders') )),
         200
     );
 
