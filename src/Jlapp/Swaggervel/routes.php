@@ -19,48 +19,63 @@ Route::get('api-docs', function() {
         $docDir = Config::get('swaggervel::app.doc-dir');
 
         if (!File::exists($docDir) || is_writable($docDir)) {
-            //delete all existing documentation
+            // delete all existing documentation
             if (File::exists($docDir)) {
                 File::deleteDirectory($docDir);
             }
 
             File::makeDirectory($docDir);
 
-            $basepath = "";
+            $basepath       = "";
+            $apiVersion     = "";
+            $swaggerVersion = "";
+            $excludes       = "";
+
             $defaultBasePath = Config::get('swaggervel::app.default-base-path');
-            if ((isset($defaultBasePath)) && ($defaultBasePath !== '')) {
-                $basepath .= ' --default-base-path "'.$defaultBasePath.'"';
+            if ( ! empty($defaultBasePath)) {
+                $basepath .= " --default-base-path '{$defaultBasePath}'";
             }
 
-            $excludes = "";
-            $found = false;
-            foreach(Config::get('swaggervel::app.excludes') as $exclude) {
-                if (!$found) {
-                    $excludes .= "-e ";
-                    $found = true;
-                }
-                $excludes .= $exclude.":";
+            $defaultApiVersion = Config::get('swaggervel::app.default-api-version');
+            if ( ! empty($defaultApiVersion)) {
+               $apiVersion = " --default-api-version '{$defaultApiVersion}'";
             }
 
-            if ($found) {
-                $excludes = rtrim($excludes, ":");
+            $defaultSwaggerVersion = Config::get('swaggervel::app.default-swagger-version');
+            if ( ! empty($defaultSwaggerVersion)) {
+               $swaggerVersion = " --default-swagger-version '{$defaultSwaggerVersion}'";
             }
 
-            $result = shell_exec("php " . base_path() . "/vendor/zircote/swagger-php/swagger.phar $appDir -o {$docDir} {$basepath} {$excludes}");
+            $exludeDirs = Config::get('swaggervel::app.excludes');
+            if (is_array($exludeDirs) && ! empty($exludeDirs)){
+                $excludes = " -e " . implode(":", $exludeDirs);
+            }
+
+            $cmd = "php " . base_path() . "/vendor/zircote/swagger-php/swagger.phar $appDir -o {$docDir} {$apiVersion} {$swaggerVersion} {$basepath} {$excludes}";
+
+            $result = shell_exec($cmd);
 
             //display all swagger-php error messages so that it doesn't fail silently
-            if ((strpos($result, "[INFO]") != FALSE) || (strpos($result, "[WARN]") != FALSE)) {
+            if ((strpos($result, "[INFO]") != FALSE) || (strpos($result, "[WARN]") != FALSE) || (strpos($result, "[ERROR]") != FALSE)) {
                 throw new \Exception($result);
             }
         }
+    }
+
+    if (Config::get('swaggervel::app.behind-reverse-proxy')) {
+        $proxy = Request::server('REMOTE_ADDR');
+        Request::setTrustedProxies(array($proxy));
     }
 
     Blade::setEscapedContentTags('{{{', '}}}');
     Blade::setContentTags('{{', '}}');
 
     $response = Response::make(
-        //need to add the slash at the end to avoid CORS error on Homestead boxes
-        View::make('swaggervel::index', array('urlToDocs' => url(Config::get('swaggervel::app.doc-route')) + "/", 'requestHeaders' => Config::get('swaggervel::app.requestHeaders') )),
+        View::make('swaggervel::index', array(
+            'secure'         => Request::secure(),
+            'urlToDocs'      => url(Config::get('swaggervel::app.doc-route') + "/"),
+            'requestHeaders' => Config::get('swaggervel::app.requestHeaders') )
+        ),
         200
     );
 
