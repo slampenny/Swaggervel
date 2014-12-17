@@ -70,10 +70,11 @@ Route::get('api-docs', function() {
     Blade::setEscapedContentTags('{{{', '}}}');
     Blade::setContentTags('{{', '}}');
 
+    //need the / at the end to avoid CORS errors on Homestead systems.
     $response = Response::make(
         View::make('swaggervel::index', array(
             'secure'         => Request::secure(),
-            'urlToDocs'      => url(Config::get('swaggervel::app.doc-route')."/"),
+            'urlToDocs'      => url(Config::get('swaggervel::app.doc-route'))."/",
             'requestHeaders' => Config::get('swaggervel::app.requestHeaders') )
         ),
         200
