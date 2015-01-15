@@ -1,8 +1,13 @@
 <?php
 
+use Swagger\Swagger;
+
 Route::any(Config::get('swaggervel::app.doc-route').'/{page?}', function($page='api-docs.json') {
     $filePath = Config::get('swaggervel::app.doc-dir') . "/{$page}";
 
+    if (File::extension($filePath) === "") {
+        $filePath .= ".json";
+    }
     if (!File::Exists($filePath)) {
         App::abort(404, "Cannot find {$filePath}");
     }
@@ -26,38 +31,38 @@ Route::get('api-docs', function() {
 
             File::makeDirectory($docDir);
 
-            $basepath       = "";
-            $apiVersion     = "";
-            $swaggerVersion = "";
-            $excludes       = "";
-
             $defaultBasePath = Config::get('swaggervel::app.default-base-path');
-            if ( ! empty($defaultBasePath)) {
-                $basepath .= " --default-base-path '{$defaultBasePath}'";
-            }
-
             $defaultApiVersion = Config::get('swaggervel::app.default-api-version');
-            if ( ! empty($defaultApiVersion)) {
-               $apiVersion = " --default-api-version '{$defaultApiVersion}'";
-            }
-
             $defaultSwaggerVersion = Config::get('swaggervel::app.default-swagger-version');
-            if ( ! empty($defaultSwaggerVersion)) {
-               $swaggerVersion = " --default-swagger-version '{$defaultSwaggerVersion}'";
+            $excludeDirs = Config::get('swaggervel::app.excludes');
+
+            $swagger = new Swagger($appDir, $excludeDirs);
+
+            $resourceList = $swagger->getResourceList(array(
+                'output' => 'array',
+                'apiVersion' => $defaultApiVersion,
+                'swaggerVersion' => $defaultSwaggerVersion,
+            ));
+            $resourceOptions = array(
+                'output' => 'json',
+                'defaultSwaggerVersion' => $resourceList['swaggerVersion'],
+                'defaultBasePath' => $defaultBasePath
+            );
+
+            $output = array();
+            foreach ($swagger->getResourceNames() as $resourceName) {
+                $json = $swagger->getResource($resourceName, $resourceOptions);
+                $resourceName = str_replace(DIRECTORY_SEPARATOR, '-', ltrim($resourceName, DIRECTORY_SEPARATOR));
+                $output[$resourceName] = $json;
             }
 
-            $exludeDirs = Config::get('swaggervel::app.excludes');
-            if (is_array($exludeDirs) && ! empty($exludeDirs)){
-                $excludes = " -e " . implode(":", $exludeDirs);
-            }
+            $filename = $docDir . '/api-docs.json';
+            file_put_contents($filename, Swagger::jsonEncode($resourceList, true));
 
-            $cmd = "php " . base_path() . "/vendor/zircote/swagger-php/swagger.phar $appDir -o {$docDir} {$apiVersion} {$swaggerVersion} {$basepath} {$excludes}";
-
-            $result = shell_exec($cmd);
-
-            //display all swagger-php error messages so that it doesn't fail silently
-            if ((strpos($result, "[INFO]") != FALSE) || (strpos($result, "[WARN]") != FALSE) || (strpos($result, "[ERROR]") != FALSE)) {
-                throw new \Exception($result);
+            foreach ($output as $name => $json) {
+                $name = str_replace(DIRECTORY_SEPARATOR, '-', ltrim($name, DIRECTORY_SEPARATOR));
+                $filename = $docDir . '/'.$name . '.json';
+                file_put_contents($filename, $json);
             }
         }
     }
