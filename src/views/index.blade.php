@@ -37,11 +37,11 @@ header("Access-Control-Allow-Headers: X-Requested-With");
                 onComplete: function (swaggerApi, swaggerUi) {
                     log("Loaded SwaggerUI");
                     @if(isset($requestHeaders))
-                    @foreach($requestHeaders as $requestKey => $requestValue)
-                    window.authorizations.add("{{$requestKey}}", new ApiKeyAuthorization("{{$requestKey}}", "{{$requestValue}}", "header"));
-                    @endforeach
-                @endif
-                if (typeof initOAuth == "function") {
+                        @foreach($requestHeaders as $requestKey => $requestValue)
+                        window.authorizations.add("{{$requestKey}}", new ApiKeyAuthorization("{{$requestKey}}", "{{$requestValue}}", "header"));
+                        @endforeach
+                    @endif
+                    if (typeof initOAuth == "function") {
                         /*
                          initOAuth({
                          clientId: "your-client-id",
@@ -66,6 +66,8 @@ header("Access-Control-Allow-Headers: X-Requested-With");
                 if (key && key.trim() != "") {
                     log("added key " + key);
                     window.authorizations.add("key", new ApiKeyAuthorization("{{Config::get('swaggervel::app.api-key')}}", key, "query"));
+                } else {
+                    window.authorizations.remove("key");
                 }
             })
             window.swaggerUi.load();
