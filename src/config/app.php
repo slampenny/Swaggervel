@@ -37,6 +37,7 @@ return array(
         app_path()."/storage",
         app_path()."/tests",
         app_path()."/views",
+        app_path()."/config"
     ),
 
     /*
