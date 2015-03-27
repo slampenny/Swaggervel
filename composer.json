@@ -1,23 +1,26 @@
 {
-    "name": "jlapp/swaggervel",
-    "description": "A great way to integrate Swagger into Laravel",
-    "keywords": ["laravel", "swagger"],
-    "version": "1.0.0",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "jlapp",
-            "email": "jordan@jordanlapp.com"
-        }
-    ],
-    "require": {
-        "php": ">=5.3.0",
-        "zircote/swagger-php": "*"
-    },
-    "autoload": {
-        "psr-0": {
-            "Jlapp\\Swaggervel": "src/"
-        }
-    },
-    "minimum-stability": "stable"
+  "name": "jlapp/swaggervel",
+  "description": "A great way to integrate Swagger into Laravel",
+  "keywords": [
+    "laravel",
+    "swagger"
+  ],
+  "version": "1.0.0",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "jlapp",
+      "email": "jordan@jordanlapp.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.0",
+    "zircote/swagger-php": "*"
+  },
+  "autoload": {
+    "psr-0": {
+      "Jlapp\\Swaggervel": "src/"
+    }
+  },
+  "minimum-stability": "stable"
 }
