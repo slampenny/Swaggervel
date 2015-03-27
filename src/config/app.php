@@ -12,7 +12,7 @@ return array(
       | Absolute path to location where parsed swagger annotations will be stored
       |--------------------------------------------------------------------------
     */
-    'doc-dir' => app_path() . '/storage/docs',
+    'doc-dir' => storage_path() . '/api-docs',
 
     /*
       |--------------------------------------------------------------------------
@@ -34,7 +34,7 @@ return array(
       |--------------------------------------------------------------------------
     */
     "excludes" => array(
-        app_path()."/storage",
+        storage_path(),
         app_path()."/tests",
         app_path()."/views",
         app_path()."/config"
@@ -45,23 +45,28 @@ return array(
       | Turn this off to remove swagger generation on production
       |--------------------------------------------------------------------------
     */
-    "generateAlways" => true,
+    "generateAlways" => env('SWAGGER_GENERATE_ALWAYS', false),
 
-    "api-key" => "auth_token",
+    /*
+      |--------------------------------------------------------------------------
+      | Edit to set the api's Auth token
+      |--------------------------------------------------------------------------
+    */
+    "api-key" => env('API_AUTH_TOKEN', 'SomeRandomString'),
 
     /*
       |--------------------------------------------------------------------------
       | Edit to set the api's version number
       |--------------------------------------------------------------------------
     */
-    "default-api-version" => "",
+    "default-api-version" => env('DEFAULT_API_VERSION', '1.0'),
 
     /*
       |--------------------------------------------------------------------------
       | Edit to set the swagger version number
       |--------------------------------------------------------------------------
     */
-    "default-swagger-version" => "1.2",
+    "default-swagger-version" => env('SWAGGER_VERSION', '2.0'),
 
     /*
       |--------------------------------------------------------------------------
