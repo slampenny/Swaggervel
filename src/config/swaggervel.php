@@ -12,7 +12,7 @@ return array(
       | Absolute path to location where parsed swagger annotations will be stored
       |--------------------------------------------------------------------------
     */
-    'doc-dir' => app_path() . '/storage/docs',
+    'doc-dir' => storage_path() . '/docs',
 
     /*
       |--------------------------------------------------------------------------
@@ -34,10 +34,10 @@ return array(
       |--------------------------------------------------------------------------
     */
     "excludes" => array(
-        app_path()."/storage",
-        app_path()."/tests",
-        app_path()."/views",
-        app_path()."/config"
+        storage_path(),
+        base_path()."/tests",
+        base_path()."/resources/views",
+        base_path()."/config"
     ),
 
     /*

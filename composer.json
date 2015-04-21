@@ -1,8 +1,8 @@
 {
     "name": "jlapp/swaggervel",
     "description": "A great way to integrate Swagger into Laravel",
-    "keywords": ["laravel", "swagger"],
-    "version": "1.0.0",
+    "keywords": ["laravel", "swagger", "l4", "l5", "documentation", "api"],
+    "version": "5.0.0",
     "license": "MIT",
     "authors": [
         {
