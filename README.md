@@ -3,7 +3,7 @@ Swaggervel
 
 Swagger for Laravel
 
-### For Laravel 5, please use the [1.0 branch](https://github.com/slampenny/Swaggervel.git)!
+### For Laravel 5, please use the [2.0 branch](https://github.com/slampenny/Swaggervel/tree/2.0)!
 
 This package combines [Swagger-php](https://github.com/zircote/swagger-php) and [swagger-ui](https://github.com/wordnik/swagger-ui) into one Laravel-friendly package.
 
