@@ -1,3 +1,6 @@
+### For Laravel 5, please use the [2.0 branch](https://github.com/slampenny/Swaggervel/tree/2.0)!
+### For Laravel 4, please use the [1.0 branch](https://github.com/slampenny/Swaggervel/tree/1.0)!
+
 Swaggervel
 ==========
 
