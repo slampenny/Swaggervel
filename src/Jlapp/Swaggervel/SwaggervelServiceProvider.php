@@ -1,12 +1,37 @@
 <?php namespace Jlapp\Swaggervel;
 
 use Illuminate\Support\ServiceProvider;
-use Jlapp\Swaggervel\Installer;
-
-use Config;
 
 class SwaggervelServiceProvider extends ServiceProvider {
 
+    /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = false;
+
+    /**
+     * Bootstrap the application events.
+     *
+     * @return void
+     */
+    public function boot() {
+        $this->publishes([
+            __DIR__.'/../../config/swaggervel.php' => config_path('swaggervel.php'),
+        ]);
+
+        $this->publishes([
+            __DIR__.'/../../../public' => public_path('vendor/swaggervel'),
+        ], 'public');
+
+
+        $this->loadViewsFrom(__DIR__.'/../../views', 'swaggervel');
+
+        $this->publishes([
+            __DIR__.'/../../views' => base_path('resources/views/vendor/swaggervel'),
+        ]);
+    }
     /**
      * Register the service provider.
      *
@@ -14,9 +39,9 @@ class SwaggervelServiceProvider extends ServiceProvider {
      */
     public function register()
     {
-        $this->package('jlapp/swaggervel');
-
-        $this->commands(array('Jlapp\Swaggervel\InstallerCommand'));
+        $this->mergeConfigFrom(
+            __DIR__.'/../../config/swaggervel.php', 'swaggervel'
+        );
 
         require_once __DIR__ .'/routes.php';
     }

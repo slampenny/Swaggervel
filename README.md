@@ -1,3 +1,6 @@
+
+### For Laravel 4, please use the [1.0 branch](https://github.com/slampenny/Swaggervel/tree/1.0)!
+
 Swaggervel
 ==========
 
@@ -10,9 +13,8 @@ When you run your app in debug mode, Swaggervel will scan your app folder (or an
 Installation
 ============
 
-- Add `Jlapp\Swaggervel\SwaggervelServiceProvider` to your providers array in `app/config/app.php`
-- Run `php artisan swaggervel:install` to push swagger-ui to your public folder.
-- Run `php artisan config:publish jlapp/swaggervel` to push config files to your app folder.
+- Add `Jlapp\Swaggervel\SwaggervelServiceProvider` to your providers array in `app/config/app.php` above your route provider, to avoid any catch-all routes
+- Run `php artisan vendor:publish` to push swagger-ui to your public folder.
 
 Example
 =======

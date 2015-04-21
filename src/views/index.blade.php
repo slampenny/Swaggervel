@@ -7,49 +7,48 @@ header("Access-Control-Allow-Headers: X-Requested-With");
 ?>
 <html>
 <head>
-    {{ HTML::style('https://fonts.googleapis.com/css?family=Droid+Sans:400,700'); }}
-    {{ HTML::style('packages/jlapp/swaggervel/css/reset.css', array('media' => 'screen'), $secure); }}
-    {{ HTML::style('packages/jlapp/swaggervel/css/reset.css', array('media' => 'print'), $secure); }}
-    {{ HTML::style('packages/jlapp/swaggervel/css/screen.css', array('media' => 'screen'), $secure); }}
-    {{ HTML::style('packages/jlapp/swaggervel/css/screen.css', array('media' => 'print'), $secure); }}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700">
+    <link rel="stylesheet" href="vendor/swaggervel/css/reset.css">
+    <link rel="stylesheet" href="vendor/swaggervel/css/reset.css">
+    <link rel="stylesheet" href="vendor/swaggervel/css/screen.css">
+    <link rel="stylesheet" href="vendor/swaggervel/css/screen.css">
 
-    {{ HTML::script('packages/jlapp/swaggervel/lib/shred.bundle.js', array(), $secure); }}
-    {{ HTML::script('packages/jlapp/swaggervel/lib/jquery-1.8.0.min.js', array(), $secure); }}
-    {{ HTML::script('packages/jlapp/swaggervel/lib/jquery.slideto.min.js', array(), $secure); }}
-    {{ HTML::script('packages/jlapp/swaggervel/lib/jquery.wiggle.min.js', array(), $secure); }}
-    {{ HTML::script('packages/jlapp/swaggervel/lib/jquery.ba-bbq.min.js', array(), $secure); }}
-    {{ HTML::script('packages/jlapp/swaggervel/lib/handlebars-1.0.0.js', array(), $secure); }}
-    {{ HTML::script('packages/jlapp/swaggervel/lib/underscore-min.js', array(), $secure); }}
-    {{ HTML::script('packages/jlapp/swaggervel/lib/backbone-min.js', array(), $secure); }}
-    {{ HTML::script('packages/jlapp/swaggervel/lib/swagger.js', array(), $secure); }}
-    {{ HTML::script('packages/jlapp/swaggervel/swagger-ui.js', array(), $secure); }}
-    {{ HTML::script('packages/jlapp/swaggervel/lib/highlight.7.3.pack.js', array(), $secure); }}
+    <script src="vendor/swaggervel/lib/shred.bundle.js"></script>
+    <script src="vendor/swaggervel/lib/jquery-1.8.0.min.js"></script>
+    <script src="vendor/swaggervel/lib/jquery.slideto.min.js"></script>
+    <script src="vendor/swaggervel/lib/jquery.wiggle.min.js"></script>
+    <script src="vendor/swaggervel/lib/jquery.ba-bbq.min.js"></script>
+    <script src="vendor/swaggervel/lib/handlebars-1.0.0.js"></script>
+    <script src="vendor/swaggervel/lib/underscore-min.js"></script>
+    <script src="vendor/swaggervel/lib/backbone-min.js"></script>
+    <script src="vendor/swaggervel/lib/swagger.js"></script>
+    <script src="vendor/swaggervel/swagger-ui.js"></script>
+    <script src="vendor/swaggervel/lib/highlight.7.3.pack.js"></script>
 
     <!-- enabling this will enable oauth2 implicit scope support -->
-    {{--    {{ HTML::script('packages/jlapp/swaggervel/lib/swagger-oauth.js' , array(), $secure); }}--}}
+    {{--    {{ HTML::script('packages/jlapp/swaggervel/lib/swagger-oauth.js' , array(), $secure); !!}--}}
 
     <script type="text/javascript">
         $(function () {
             window.swaggerUi = new SwaggerUi({
-                url: "{{{ $urlToDocs }}}",
+                url: "{!! $urlToDocs !!}",
                 dom_id: "swagger-ui-container",
                 supportedSubmitMethods: ['get', 'post', 'put', 'delete'],
                 onComplete: function (swaggerApi, swaggerUi) {
                     log("Loaded SwaggerUI");
                     @if(isset($requestHeaders))
-                        @foreach($requestHeaders as $requestKey => $requestValue)
-                        window.authorizations.add("{{$requestKey}}", new ApiKeyAuthorization("{{$requestKey}}", "{{$requestValue}}", "header"));
-                        @endforeach
-                    @endif
-                    if (typeof initOAuth == "function") {
-                        /*
-                         initOAuth({
-                         clientId: "your-client-id",
-                         realm: "your-realms",
-                         appName: "your-app-name"
-                         });
-                         */
-                    }
+                    @foreach($requestHeaders as $requestKey => $requestValue)
+                    window.authorizations.add("{!!$requestKey!!}", new ApiKeyAuthorization("{!!$requestKey!!}", "{!!$requestValue!!}", "header"));
+                    @endforeach
+                @endif
+                /*if (typeof initOAuth == "function") {
+
+                     initOAuth({
+                     clientId: "your-client-id",
+                     realm: "your-realms",
+                     appName: "your-app-name"
+                     });
+                     }*/
                     $('pre code').each(function (i, e) {
                         hljs.highlightBlock(e)
                     });
@@ -65,7 +64,7 @@ header("Access-Control-Allow-Headers: X-Requested-With");
                 log("key: " + key);
                 if (key && key.trim() != "") {
                     log("added key " + key);
-                    window.authorizations.add("key", new ApiKeyAuthorization("{{Config::get('swaggervel::app.api-key')}}", key, "query"));
+                    window.authorizations.add("key", new ApiKeyAuthorization("{!! Config::get('swaggervel.api-key') !!}", key, "query"));
                 } else {
                     window.authorizations.remove("key");
                 }
@@ -81,10 +80,10 @@ header("Access-Control-Allow-Headers: X-Requested-With");
 
         <form id='api_selector'>
             <div class='input icon-btn'>
-                {{ HTML::image('packages/jlapp/swaggervel/images/pet_store_api.png', "", array('id' => 'show-pet-store-icon', 'title' => 'Show Swagger Petstore Example Apis'), $secure); }}
+                <image id = "show-pet-store-icon" title = "Show Swagger Petstore Example Apis" src="vendor/swaggervel/images/pet_store_api.png" />
             </div>
             <div class='input icon-btn'>
-                {{ HTML::image('packages/jlapp/swaggervel/images/wordnik_api.png', "", array('id' => 'show-wordnik-dev-icon', 'title' => 'Show Wordnik Developer Apis'), $secure); }}
+                <image id = "show-wordnik-dev-icon" title = "Show Wordnik Developer Apis" src="vendor/swaggervel/images/wordnik_api.png" />
             </div>
             <div class='input'><input placeholder="http://example.com/api" id="input_baseUrl" name="baseUrl"
                                       type="text"/></div>
