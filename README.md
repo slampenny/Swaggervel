@@ -14,7 +14,7 @@ Installation
 ============
 
 - Add `Jlapp\Swaggervel\SwaggervelServiceProvider` to your providers array in `app/config/app.php` above your routes provider (to avoid catch all routes)
-- Run `php artisan vender:publish` to push config files to your app folder.
+- Run `php artisan vendor:publish` to push config files to your app folder.
 
 Example
 =======
