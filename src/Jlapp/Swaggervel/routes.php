@@ -79,9 +79,10 @@ Route::get(Config::get("swaggervel::$configName.api-docs-route"), function() use
     $response = Response::make(
         View::make('swaggervel::index', array(
             'secure'         => Request::secure(),
+            'apiKey'         => Config::get("swaggervel::$configName.api-key"),
             'urlToDocs'      => url(Config::get("swaggervel::$configName.doc-route")),
-            'requestHeaders' => Config::get("swaggervel::$configName.requestHeaders") )
-        ),
+            'requestHeaders' => Config::get("swaggervel::$configName.requestHeaders"),
+        )),
         200
     );
 
