@@ -1,5 +1,6 @@
 <?php namespace Jlapp\Swaggervel;
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 
 class SwaggervelServiceProvider extends ServiceProvider {
@@ -43,7 +44,40 @@ class SwaggervelServiceProvider extends ServiceProvider {
             __DIR__.'/../../config/swaggervel.php', 'swaggervel'
         );
 
-        require_once __DIR__ .'/routes.php';
+        foreach($this->getMultiKeys() as $configName) {
+            if (Config::get("$configName.active")) {
+                require __DIR__ .'/routes.php';
+            }
+        }
     }
 
+
+    /**
+     * Get additional configs
+     *
+     * @return array
+     */
+    public function getMultiKeys()
+    {
+        $result = ['swaggervel'];
+
+        $additional = Config::get('swaggervel.additional');
+        if ($additional) {
+            is_array($additional) || ($additional = (array) $additional);
+
+            $this->mergeConfigFrom(
+                __DIR__.'/../../config/swaggervel.php', 'swagger.admin'
+            );
+
+            foreach ($additional as $key) {
+                $this->mergeConfigFrom(
+                    __DIR__.'/../../config/swaggervel.php', $key
+                );
+
+                $result[] = $key;
+            }
+        }
+
+        return $result;
+    }
 }

@@ -8,25 +8,25 @@ header("Access-Control-Allow-Headers: X-Requested-With");
 <html>
 <head>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700">
-    <link rel="stylesheet" href="vendor/swaggervel/css/reset.css">
-    <link rel="stylesheet" href="vendor/swaggervel/css/reset.css">
-    <link rel="stylesheet" href="vendor/swaggervel/css/screen.css">
-    <link rel="stylesheet" href="vendor/swaggervel/css/screen.css">
+    <link rel="stylesheet" href="{{ URL::asset('vendor/swaggervel/css/reset.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('vendor/swaggervel/css/reset.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('vendor/swaggervel/css/screen.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('vendor/swaggervel/css/screen.css') }}">
 
-    <script src="vendor/swaggervel/lib/shred.bundle.js"></script>
-    <script src="vendor/swaggervel/lib/jquery-1.8.0.min.js"></script>
-    <script src="vendor/swaggervel/lib/jquery.slideto.min.js"></script>
-    <script src="vendor/swaggervel/lib/jquery.wiggle.min.js"></script>
-    <script src="vendor/swaggervel/lib/jquery.ba-bbq.min.js"></script>
-    <script src="vendor/swaggervel/lib/handlebars-1.0.0.js"></script>
-    <script src="vendor/swaggervel/lib/underscore-min.js"></script>
-    <script src="vendor/swaggervel/lib/backbone-min.js"></script>
-    <script src="vendor/swaggervel/lib/swagger.js"></script>
-    <script src="vendor/swaggervel/swagger-ui.js"></script>
-    <script src="vendor/swaggervel/lib/highlight.7.3.pack.js"></script>
+    <script src="{{ URL::asset('vendor/swaggervel/lib/shred.bundle.js') }}"></script>
+    <script src="{{ URL::asset('vendor/swaggervel/lib/jquery-1.8.0.min.js') }}"></script>
+    <script src="{{ URL::asset('vendor/swaggervel/lib/jquery.slideto.min.js') }}"></script>
+    <script src="{{ URL::asset('vendor/swaggervel/lib/jquery.wiggle.min.js') }}"></script>
+    <script src="{{ URL::asset('vendor/swaggervel/lib/jquery.ba-bbq.min.js') }}"></script>
+    <script src="{{ URL::asset('vendor/swaggervel/lib/handlebars-1.0.0.js') }}"></script>
+    <script src="{{ URL::asset('vendor/swaggervel/lib/underscore-min.js') }}"></script>
+    <script src="{{ URL::asset('vendor/swaggervel/lib/backbone-min.js') }}"></script>
+    <script src="{{ URL::asset('vendor/swaggervel/lib/swagger.js') }}"></script>
+    <script src="{{ URL::asset('vendor/swaggervel/swagger-ui.js') }}"></script>
+    <script src="{{ URL::asset('vendor/swaggervel/lib/highlight.7.3.pack.js') }}"></script>
 
     <!-- enabling this will enable oauth2 implicit scope support -->
-    {{--    {{ HTML::script('packages/jlapp/swaggervel/lib/swagger-oauth.js' , array(), $secure); !!}--}}
+    {{--    {!! HTML::script('packages/jlapp/swaggervel/lib/swagger-oauth.js' , array(), $secure); !!} --}}
 
     <script type="text/javascript">
         $(function () {
@@ -64,7 +64,7 @@ header("Access-Control-Allow-Headers: X-Requested-With");
                 log("key: " + key);
                 if (key && key.trim() != "") {
                     log("added key " + key);
-                    window.authorizations.add("key", new ApiKeyAuthorization("{!! Config::get('swaggervel.api-key') !!}", key, "query"));
+                    window.authorizations.add("key", new ApiKeyAuthorization("{!! $apiKey !!}", key, "query"));
                 } else {
                     window.authorizations.remove("key");
                 }
@@ -80,10 +80,10 @@ header("Access-Control-Allow-Headers: X-Requested-With");
 
         <form id='api_selector'>
             <div class='input icon-btn'>
-                <image id = "show-pet-store-icon" title = "Show Swagger Petstore Example Apis" src="vendor/swaggervel/images/pet_store_api.png" />
+                <image id = "show-pet-store-icon" title = "Show Swagger Petstore Example Apis" src="{{ URL::asset('vendor/swaggervel/images/pet_store_api.png') }}" />
             </div>
             <div class='input icon-btn'>
-                <image id = "show-wordnik-dev-icon" title = "Show Wordnik Developer Apis" src="vendor/swaggervel/images/wordnik_api.png" />
+                <image id = "show-wordnik-dev-icon" title = "Show Wordnik Developer Apis" src="{{ URL::asset('vendor/swaggervel/images/wordnik_api.png') }}" />
             </div>
             <div class='input'><input placeholder="http://example.com/api" id="input_baseUrl" name="baseUrl"
                                       type="text"/></div>
