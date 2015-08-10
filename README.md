@@ -1,5 +1,7 @@
 To use Swaggervel for Laravel 4.2, use the version 1.0 branch (https://github.com/slampenny/Swaggervel/tree/1.0)
 
+**Note:** This fork updates the Swagger-ui to version 2.1.1.
+
 Swaggervel
 ==========
 
