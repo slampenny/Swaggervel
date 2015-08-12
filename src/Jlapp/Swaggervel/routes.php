@@ -1,7 +1,5 @@
 <?php
 
-use Swagger\Swagger;
-
 Route::any(Config::get('swaggervel.doc-route').'/{page?}', function($page='api-docs.json') {
     $filePath = Config::get('swaggervel.doc-dir') . "/{$page}";
 
@@ -36,34 +34,12 @@ Route::get('api-docs', function() {
             $defaultSwaggerVersion = Config::get('swaggervel.default-swagger-version');
             $excludeDirs = Config::get('swaggervel.excludes');
 
-            $swagger = new Swagger($appDir, $excludeDirs);
-
-            $resourceList = $swagger->getResourceList(array(
-                'output' => 'array',
-                'apiVersion' => $defaultApiVersion,
-                'swaggerVersion' => $defaultSwaggerVersion,
-            ));
-            $resourceOptions = array(
-                'output' => 'json',
-                'defaultSwaggerVersion' => $resourceList['swaggerVersion'],
-                'defaultBasePath' => $defaultBasePath
-            );
-
-            $output = array();
-            foreach ($swagger->getResourceNames() as $resourceName) {
-                $json = $swagger->getResource($resourceName, $resourceOptions);
-                $resourceName = str_replace(DIRECTORY_SEPARATOR, '-', ltrim($resourceName, DIRECTORY_SEPARATOR));
-                $output[$resourceName] = $json;
-            }
+            $swagger =  \Swagger\scan($appDir, [
+                'exclude' => $excludeDirs
+                ]);
 
             $filename = $docDir . '/api-docs.json';
-            file_put_contents($filename, Swagger::jsonEncode($resourceList, true));
-
-            foreach ($output as $name => $json) {
-                $name = str_replace(DIRECTORY_SEPARATOR, '-', ltrim($name, DIRECTORY_SEPARATOR));
-                $filename = $docDir . '/'.$name . '.json';
-                file_put_contents($filename, $json);
-            }
+            file_put_contents($filename, $swagger);
         }
     }
 
@@ -79,7 +55,12 @@ Route::get('api-docs', function() {
     $response = response()->view('swaggervel::index', array(
         'secure'         => Request::secure(),
         'urlToDocs'      => url(Config::get('swaggervel.doc-route')),
-        'requestHeaders' => Config::get('swaggervel.requestHeaders') )
+        'requestHeaders' => Config::get('swaggervel.requestHeaders'),
+        'clientId'       => Input::get("client_id"),
+        'clientSecret'       => Input::get("client_secret"),
+        'realm'       => Input::get("realm"),
+        'appName'       => Input::get("appName"),
+        )
     );
 
     //need the / at the end to avoid CORS errors on Homestead systems.

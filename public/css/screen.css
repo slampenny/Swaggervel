@@ -1277,3 +1277,10 @@
   text-align: center;
   padding-top: 10px;
 }
+#oauth2-settings {
+    margin-top: 10px;
+}
+#oauth2-settings .note {
+    font-size: smaller;
+    color: #919191;
+}
