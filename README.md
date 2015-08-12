@@ -3,6 +3,23 @@ Swagger 2
 This fork uses Swagger-spec 2.0 and Swagger-php 2.0. 
 This fork also updates the Swagger-ui to version 2.1.1.
 
+To use this package, add to the composer.json:
+````
+"repositories": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/tralves/Swaggervel"
+        }
+    ],
+(...)
+"require": {
+  "jlapp/swaggervel": "master-dev",
+}
+````
+
+
+    
+
 OAuth2
 ======
 The Swagger-ui was changed to allow inserting the OAuth 2 parameters (``client_id``, ``client_secret``, ``realm`` and ``appName``) directly in the ui.
