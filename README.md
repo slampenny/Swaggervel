@@ -1,3 +1,33 @@
+Swagger 2
+=========
+This fork uses Swagger-spec 2.0 and Swagger-php 2.0. 
+This fork also updates the Swagger-ui to version 2.1.1.
+
+To use this package, add to the composer.json:
+````
+"repositories": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/tralves/Swaggervel"
+        }
+    ],
+(...)
+"require": {
+  "jlapp/swaggervel": "master-dev",
+}
+````
+
+
+    
+
+OAuth2
+======
+The Swagger-ui was changed to allow inserting the OAuth 2 parameters (``client_id``, ``client_secret``, ``realm`` and ``appName``) directly in the ui.
+You can also pass these values in the url in the URL, like so:
+``http://api.appcursos.com/api-docs?client_id=my-client-id&client_secret=my-client-secret&realm=my-realm&appName=my-app-name``
+
+The rest of this document comes from the original (and awesome) package [Swaggervel](https://github.com/slampenny/Swaggervel)
+
 To use Swaggervel for Laravel 4.2, use the version 1.0 branch (https://github.com/slampenny/Swaggervel/tree/1.0)
 
 Swaggervel
