@@ -25,8 +25,8 @@ class SwaggervelServiceProvider extends ServiceProvider {
         $configFiles = File::glob($configPath . "/*.php");
         foreach ($configFiles as $file) {
             $configName = pathinfo($file, PATHINFO_FILENAME);
-
-            require_once __DIR__ .'/routes.php';
+            
+            require __DIR__ .'/routes.php';
         }
     }
 }
