@@ -103,7 +103,7 @@ header("Access-Control-Allow-Headers: X-Requested-With");
                 function addApiKeyAuthorization() {
                     var key = encodeURIComponent($('#input_apiKey')[0].value);
                     if (key && key.trim() != "") {
-                        var apiKeyAuth = new SwaggerClient.ApiKeyAuthorization("api_key", key, "query");
+                        var apiKeyAuth = new SwaggerClient.ApiKeyAuthorization("{!! $apiKey !!}", key, "query");
                         window.swaggerUi.api.clientAuthorizations.add("api_key", apiKeyAuth);
                         log("added key " + key);
                     }
