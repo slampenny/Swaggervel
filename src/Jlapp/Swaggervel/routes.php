@@ -60,6 +60,7 @@ Route::get('api-docs', function() {
         'clientSecret'       => Input::get("client_secret"),
         'realm'       => Input::get("realm"),
         'appName'       => Input::get("appName"),
+        'apiKey'       => Config::get("swaggervel.api-key")
         )
     );
 
