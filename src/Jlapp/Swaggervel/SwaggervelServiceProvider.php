@@ -3,6 +3,7 @@
 use Illuminate\Support\ServiceProvider;
 use Jlapp\Swaggervel\Installer;
 
+use File;
 use Config;
 
 class SwaggervelServiceProvider extends ServiceProvider {
@@ -18,7 +19,14 @@ class SwaggervelServiceProvider extends ServiceProvider {
 
         $this->commands(array('Jlapp\Swaggervel\InstallerCommand'));
 
-        require_once __DIR__ .'/routes.php';
-    }
+        $configPath = app_path() . "/config/packages/jlapp/swaggervel";
+        Config::addNamespace('swaggervel', $configPath);
 
+        $configFiles = File::glob($configPath . "/*.php");
+        foreach ($configFiles as $file) {
+            $configName = pathinfo($file, PATHINFO_FILENAME);
+            
+            require __DIR__ .'/routes.php';
+        }
+    }
 }
