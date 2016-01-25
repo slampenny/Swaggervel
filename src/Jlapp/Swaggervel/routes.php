@@ -16,7 +16,7 @@ Route::any(Config::get('swaggervel.doc-route').'/{page?}', function($page='api-d
     ));
 });
 
-Route::get('api-docs', function() {
+Route::get(Config::get('swaggervel.api-docs-route'), function() {
     if (Config::get('swaggervel.generateAlways')) {
         $appDir = base_path()."/".Config::get('swaggervel.app-dir');
         $docDir = Config::get('swaggervel.doc-dir');
