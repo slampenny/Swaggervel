@@ -26,7 +26,7 @@ return array(
       | Absolute path to directory containing the swagger annotations are stored.
       |--------------------------------------------------------------------------
     */
-    "app-dir" => "modules/Api",
+    "app-dir" => "app",
 
     /*
       |--------------------------------------------------------------------------
