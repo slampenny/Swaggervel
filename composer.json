@@ -12,7 +12,7 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "zircote/swagger-php": "*"
+        "zircote/swagger-php": "1.0"
     },
     "autoload": {
         "psr-0": {
