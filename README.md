@@ -23,7 +23,7 @@ When you run your app in debug mode, Swaggervel will scan your app folder (or an
 
 
 - Add `Jlapp\Swaggervel\SwaggervelServiceProvider` to your providers array in `app/config/app.php` above your route provider, to avoid any catch-all routes
-- Run `php artisan vendor:publish` to push swagger-ui to your public folder.
+- Run `php artisan vendor:publish --provider="Jlapp\Swaggervel\SwaggervelServiceProvider"` to push swagger-ui to your public folder.
 
 ### Example
 
