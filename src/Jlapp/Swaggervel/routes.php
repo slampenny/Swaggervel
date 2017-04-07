@@ -18,7 +18,13 @@ Route::any(Config::get('swaggervel.doc-route').'/{page?}', function($page='api-d
 
 Route::get(Config::get('swaggervel.api-docs-route'), function() {
     if (Config::get('swaggervel.generateAlways')) {
-        $appDir = base_path()."/".Config::get('swaggervel.app-dir');
+        if (is_array(Config::get('swaggervel.app-dir'))) {
+            foreach (Config::get('swaggervel.app-dir') as $item) {
+                $appDir[] = base_path() . "/" .$item;
+            }
+        } else {
+            $appDir = base_path() . "/" . Config::get('swaggervel.app-dir');
+        }
         $docDir = Config::get('swaggervel.doc-dir');
 
         if (!File::exists($docDir) || is_writable($docDir)) {
