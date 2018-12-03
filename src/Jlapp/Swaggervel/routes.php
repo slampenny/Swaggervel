@@ -34,12 +34,24 @@ Route::get(Config::get('swaggervel.api-docs-route'), function() {
             $defaultSwaggerVersion = Config::get('swaggervel.default-swagger-version');
             $excludeDirs = Config::get('swaggervel.excludes');
 
-            $openapi =  \OpenApi\scan($appDir, [
-                'exclude' => $excludeDirs
-                ]);
+            switch (true) {
+                case function_exists('\OpenApi\scan'):
+                    $openapi =  \OpenApi\scan($appDir, [
+                        'exclude' => $excludeDirs
+                    ]);
 
-            $filename = $docDir . '/api-docs.json';
-            file_put_contents($filename, $openapi->toJson());
+                    $filename = $docDir . '/api-docs.json';
+                    file_put_contents($filename, $openapi->toJson());
+                    break;
+                case function_exists('\Swagger\scan'):
+                    $swagger =  \Swagger\scan($appDir, [
+                        'exclude' => $excludeDirs
+                    ]);
+
+                    $filename = $docDir . '/api-docs.json';
+                    file_put_contents($filename, $swagger);
+                    break;
+            }
         }
     }
 
