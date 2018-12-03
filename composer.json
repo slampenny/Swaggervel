@@ -19,5 +19,12 @@
             "Jlapp\\Swaggervel": "src/"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "extra": {
+        "laravel":{
+            "providers": [
+                "Jlapp\\Swaggervel\\SwaggervelServiceProvider"
+            ]
+        }
+    }
 }
