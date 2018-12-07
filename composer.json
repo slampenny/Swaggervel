@@ -2,7 +2,6 @@
     "name": "sjje/swaggervel",
     "description": "A great way to integrate Swagger into Laravel",
     "keywords": ["laravel", "swagger", "l4", "l5", "documentation", "api", "openApi"],
-    "version": "5.0.0",
     "license": "MIT",
     "authors": [
         {
