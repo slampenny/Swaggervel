@@ -34,12 +34,24 @@ Route::get(Config::get('swaggervel.api-docs-route'), function() {
             $defaultSwaggerVersion = Config::get('swaggervel.default-swagger-version');
             $excludeDirs = Config::get('swaggervel.excludes');
 
-            $swagger =  \Swagger\scan($appDir, [
-                'exclude' => $excludeDirs
-                ]);
+            switch (true) {
+                case function_exists('\OpenApi\scan'):
+                    $openapi =  \OpenApi\scan($appDir, [
+                        'exclude' => $excludeDirs
+                    ]);
 
-            $filename = $docDir . '/api-docs.json';
-            file_put_contents($filename, $swagger);
+                    $filename = $docDir . '/api-docs.json';
+                    file_put_contents($filename, $openapi->toJson());
+                    break;
+                case function_exists('\Swagger\scan'):
+                    $swagger =  \Swagger\scan($appDir, [
+                        'exclude' => $excludeDirs
+                    ]);
+
+                    $filename = $docDir . '/api-docs.json';
+                    file_put_contents($filename, $swagger);
+                    break;
+            }
         }
     }
 
@@ -47,9 +59,6 @@ Route::get(Config::get('swaggervel.api-docs-route'), function() {
         $proxy = Request::server('REMOTE_ADDR');
         Request::setTrustedProxies(array($proxy));
     }
-
-    Blade::setEscapedContentTags('{{{', '}}}');
-    Blade::setContentTags('{{', '}}');
 
     //need the / at the end to avoid CORS errors on Homestead systems.
     $response = response()->view('swaggervel::index', array(
